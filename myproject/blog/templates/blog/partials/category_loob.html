@@ -1,0 +1,10 @@
+{% for sub_cat in sub_categories %}
+    <li>
+        <a class="dropdown-item" href="{% url 'blog:category' sub_cat.slug %}">{{ sub_cat.title }}</a>
+        {% if sub_cat.children.active %}
+            <ul class="dropdown-menu sub-menu">
+                {% include 'blog/partials/category_loob.html' with sub_categories=sub_cat.children.active %}
+            </ul>
+        {% endif %}
+    </li>
+{% endfor %}
