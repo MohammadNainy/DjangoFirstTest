@@ -6,7 +6,9 @@ from .models import Article, Category
 def make_published(modeladmin, request, queryset):
     queryset.update(status="p")
 
-
+@admin.action(description="پیش نویس شدن مقالات انتخاب شده")
+def make_draft(modeladmin, request, queryset):
+    queryset.update(status="d") 
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('position','title','parent','slug','status')
@@ -26,7 +28,7 @@ class ArticleAdmin(admin.ModelAdmin):
         'slug':('title',)
     }
     ordering = ('-status','-publish')
-    actions = [make_published]
+    actions = [make_published, make_draft]
 
     def category_to_str(self,obj):
         return ", ".join([category.title for category in obj.category_published()])
