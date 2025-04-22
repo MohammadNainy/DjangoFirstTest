@@ -2,6 +2,12 @@ from django.contrib import admin
 from .models import Article, Category
 
 # Register your models here.
+@admin.action(description="انتشار مقالات انتخاب شده")
+def make_published(modeladmin, request, queryset):
+    queryset.update(status="p")
+
+
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('position','title','parent','slug','status')
     list_filter = (['status'])
@@ -19,7 +25,8 @@ class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         'slug':('title',)
     }
-    ordering = ('status','-publish')
+    ordering = ('-status','-publish')
+    actions = [make_published]
 
     def category_to_str(self,obj):
         return ", ".join([category.title for category in obj.category_published()])
