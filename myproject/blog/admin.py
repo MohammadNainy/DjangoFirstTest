@@ -1,15 +1,39 @@
 from django.contrib import admin
 from .models import Article, Category
+from django.contrib import messages  # برای ارسال پیام به ادمین
+from django.utils.translation import ngettext  # برای ترجمه و نمایش پیام‌های وابسته به تعداد
+
 
 # Register your models here.
 @admin.action(description="انتشار مقالات انتخاب شده")
 def make_published(modeladmin, request, queryset):
-    queryset.update(status="p")
+    updated = queryset.update(status="p")
+    modeladmin.message_user(
+        request,
+        ngettext(
+            "%d مقاله منتشر شد",
+            "%d مقاله منتشر شدند",
+            updated,
+        )
+        % updated,
+        messages.SUCCESS,
+    )
+
+
 
 @admin.action(description="پیش نویس شدن مقالات انتخاب شده")
 def make_draft(modeladmin, request, queryset):
-    queryset.update(status="d") 
-
+    updated = queryset.update(status="d")
+    modeladmin.message_user(
+        request,
+        ngettext(
+            "%d مقاله پیش نویس شد",
+            "%d مقاله پیش نویس شدند",
+            updated,
+        )
+        % updated,
+        messages.SUCCESS,
+    )
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('position','title','parent','slug','status')
     list_filter = (['status'])
