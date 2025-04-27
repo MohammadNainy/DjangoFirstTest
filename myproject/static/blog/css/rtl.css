@@ -1,0 +1,113 @@
+/* فونت Sahel */
+@font-face {
+    font-family: 'Sahel';
+    src: url('Sahel.eot');
+    src: url('Sahel.eot?#iefix') format('embedded-opentype'),
+         url('Sahel.woff2') format('woff2'),
+         url('Sahel.woff') format('woff'),
+         url('Sahel.ttf') format('truetype');
+}
+
+/* بدنه سایت */
+body {
+    direction: rtl;
+    text-align: justify;
+    font-family: 'Sahel', sans-serif !important;
+    font-size: 14px;
+}
+
+/* دکمه‌ها */
+.btn {
+    font-family: 'Sahel', sans-serif;
+}
+
+/* تیترها */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-family: 'Sahel', sans-serif;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+/* نوار اصلی */
+#mainNav {
+    font-family: 'Sahel', sans-serif;
+}
+
+/* مخصوص راست به چپ */
+.ms-auto {
+    margin-left: initial !important;
+    margin-right: auto;
+}
+
+/* پست متا */
+.post-meta {
+    text-align: left;
+}
+
+/* -------------------------- */
+/* ناوبری (منوهای کشویی) */
+/* -------------------------- */
+
+.navbar {
+    background: #f9f9f9;
+    padding: 10px;
+    font-family: 'Sahel', sans-serif;
+}
+
+
+.navbar ul.menu,
+.navbar ul.dropdown-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar ul.menu > li {
+    display: inline-block;
+    position: relative;
+    margin-left: 15px; /* چون راست به چپ هستیم، margin باید چپ باشه */
+}
+
+.navbar li a {
+    display: block;
+    padding: 8px 12px;
+    color: #333;
+    text-decoration: none;
+}
+
+/* dropdown ها پنهان در ابتدا */
+.navbar ul.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0; /* چون راست به چپ هستیم */
+    background: white;
+    min-width: 160px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 999;
+}
+
+/* زیرمنوی تو در تو */
+.navbar ul.sub-menu {
+    right: 100%;
+    top: 0;
+}
+
+/* نمایش dropdown وقتی موس روی li رفت */
+.navbar li:hover > .dropdown-menu {
+    display: block;
+}
+
+/* استایل آیتم‌هایی که زیرمنو دارند */
+.navbar .has-submenu {
+    position: relative;
+}
+
+.navbar .has-submenu > a {
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 2;
+}

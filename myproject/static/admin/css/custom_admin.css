@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'Tanha';
+    src: url('/static/fonts/Tanha.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --font-family-primary: 'Tanha', 
+                           "Segoe UI", 
+                           system-ui, 
+                           Roboto, 
+                           "Helvetica Neue", 
+                           Arial, 
+                           sans-serif, 
+                           "Apple Color Emoji", 
+                           "Segoe UI Emoji", 
+                           "Segoe UI Symbol", 
+                           "Noto Color Emoji";
+}
+
+/* اعمال تغییرات در بدنه و ادمین */
+body, .admin-site {
+    font-family: var(--font-family-primary);
+}
