@@ -3,6 +3,8 @@ from .models import Article, Category
 from django.contrib import messages  # برای ارسال پیام به ادمین
 from django.utils.translation import ngettext  # برای ترجمه و نمایش پیام‌های وابسته به تعداد
 
+# Admin header changes
+admin.site.site_header = "اولین وبلاگ جنگویی من(پنل ادمین)"
 
 # Register your models here.
 @admin.action(description="انتشار مقالات انتخاب شده")
