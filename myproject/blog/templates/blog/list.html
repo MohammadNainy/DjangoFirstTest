@@ -1,0 +1,59 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+
+{% block main %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('{% static 'blog/assets/img/home-bg.jpg' %}')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>محمد حسین نائینی زاده</h1>
+                            <span class="subheading">اولین پروژه جنگو با سیلیسیوم</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                     {% block header %}{% endblock %}
+                    {% for article in object_list %}
+                        <div class="post-preview">
+                            <a href="{% url 'blog:detailArticle' article.slug %}">
+                                <h2 class="post-title">{{article.title}}</h2>
+                                <h3 class="post-subtitle">{{article.describtion|truncatewords:30}}</h3>
+                            </a>
+                            <p class="post-meta">
+                                نوشته شده توسط
+                                <a href="#!">محمد حسین نائینی زاده</a>
+                                {{article.jpublish}}
+                            </p>
+                            <div>
+                                {% for cat in article.category.active %}
+                                    <a href="{% url 'blog:category' cat.slug %}">#{{cat.title}}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <hr class="my-4" />
+                    {% endfor %}
+                    <!-- Divider-->
+                    <!-- Pager-->
+                    {% if is_paginated %}
+                        <div class="d-flex justify-content-end mb-4">
+                            {% if page_obj.has_previous %}
+                                <a class="btn btn-secondary text-uppercase " style="margin-left: 15px;" href="{% block previous_page_url %}{% endblock %}">پست های جدید &rarr;</a>
+                            {% endif %}
+                            {% if page_obj.has_next %}
+                                <a class="btn btn-primary text-uppercase" href="{% block next_page_url %}{% endblock %}">پست های قدیمی &larr;</a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+{% endblock %}
